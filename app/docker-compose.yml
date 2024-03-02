@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  frontend:
+    container_name: app_frontend
+    build: ./frontend
+    ports:
+      - "3002:3002"
+    working_dir: /app-frontend
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3002"]
+      timeout: 10s
+      retries: 5
+  backend:
+    container_name: app_backend
+    build: ./backend
+    ports:
+      - "3003:3003"
+    working_dir: /app-backend
+    command: dev
+    volumes:
+      - ./backend/src:/app-backend/src
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_URL=postgres://default:onF5udGBAfx2@ep-calm-dust-a42odoyt.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require
+      - POSTGRES_HOST=db
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3003"]
+      timeout: 10s
+      retries: 5
+  db:
+    image: postgres:13
+    container_name: db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DATABASE="verceldb"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "verceldb", "-U", "root"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
