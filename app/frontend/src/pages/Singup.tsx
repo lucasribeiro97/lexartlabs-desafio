@@ -1,20 +1,70 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import validateLogin from '../utils/validateLogin';
+import validateSignup from '../utils/validateSignup';
 
 function Singup() {
+  const url = 'http://localhost:3003/sign-up';
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const user = {
+    username,
+    email,
+    password
+  }
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const isValid = validateSignup(user);
+
+    if (!isValid) return isValid;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    const { token } = await response.json();
+
+    localStorage.setItem('token', token);
+
     navigate('/login');
   }
 
   return (
     <div>
       <h2>Cadastro</h2>
-      <form>
-        <input type="text" name="username" placeholder='Usuário' />
-        <input type="text" name="email" placeholder='E-mail' />
-        <input type="password" name="password" placeholder='Senha' />
-        <button onClick={ handleSubmit }>Cadastrar</button>
+      <form onSubmit={ handleSubmit }>
+        <input
+          type="text"
+          name="username"
+          value={ username }
+          onChange={ (e) => setUsername(e.target.value) }
+          placeholder='Usuário'
+        />
+        <input
+          type="text"
+          name="email"
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
+          placeholder='E-mail'
+        />
+        <input
+          type="password"
+          name="password"
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
+          placeholder='Senha'
+        />
+        <button>Cadastrar</button>
       </form>
     </div>
   );
