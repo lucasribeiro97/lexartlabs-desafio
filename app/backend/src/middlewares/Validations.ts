@@ -1,5 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
+import * as Joi from 'joi';
 
 export default class Validations {
   static authenticate(req: Request, res: Response, next: NextFunction) {
@@ -38,5 +39,20 @@ export default class Validations {
     }
 
     next();
+  }
+
+  static validateUserCreation(req: Request, res: Response, next: NextFunction) {
+    const schema = Joi.object({
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      username: Joi.string().required(),
+    })
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.message });
+    }
+
+    return next();
   }
 }

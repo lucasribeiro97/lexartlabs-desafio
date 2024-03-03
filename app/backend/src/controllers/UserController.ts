@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 import { Request, Response } from 'express';
 import mapStatusHTTP from '../utils/mapStatusHTTP'
 import UserService from '../services/UserService';
@@ -7,13 +8,12 @@ export default class UserController {
     private userService = new UserService(),
   ) { }
 
-  // public async createUser(req: Request, res: Response) {
-  //   const { email, password, username, role } = req.body;
+  public async createUser(req: Request, res: Response) {
+    const { email, password, username } = req.body;
 
-  //   const { status, data } = await this.userService.createUser({ email, password, username, role });
-
-  //   return res.status(mapStatusHTTP(status)).json(data);
-  // }
+    const { status, data } = await this.userService.createUser(email, password, username);
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
 
   public async login(req: Request, res: Response) {
     const { email, password } = req.body;

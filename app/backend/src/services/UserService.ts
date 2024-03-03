@@ -5,6 +5,7 @@ import { IUser } from '../interfaces/users/IUser';
 import { ServiceResponse } from '../interfaces/ServiceResponse';
 import UserModel from '../models/UserModel';
 import { IUserModel } from '../interfaces/users/IUserModel';
+import SequelizeUser from '../database/models/SequelizeUser';
 
 export interface LoginResponseData {
   token: string;
@@ -17,20 +18,23 @@ type Role = { role: string };
 export default class UserService {
   constructor(
     private userModel: IUserModel<IUser> = new UserModel(),
+    private model = SequelizeUser,
   ) { }
 
-  public async createUser(user: IUser) {
-    const userExists = await this.userModel.findByEmail(user.email);
-    if (userExists) return {
-      status: 'CONFLICT',
-      data: { message: 'User already exists' },
-    };
-    
-    const { password } = user;
+  public async createUser(email: string, password: string, username: string): Promise<LoginResponse> {
+    const userExists = await this.model.findOne({ where: { email } });
+    if (userExists) {
+      return { status: 'CONFLICT', data: { message: 'User already exists' } };
+    }
+  
     const hashedPassword = bcrypt.hashSync(password, 10);
-    const newUser = { ...user, password: hashedPassword };
-    const createdUser = await this.userModel.createUser(newUser);
-    return createdUser;
+    const newUser = await this.userModel.createUser({ email, password: hashedPassword, username, role: 'user'});
+  
+    const payload = { id: newUser.id, email: newUser.email };
+    const secret = 'jwt_secret';
+    const token = jwt.sign(payload, secret, { expiresIn: '10d' });
+  
+    return { status: 'CREATED', data: { token } };
   }
 
   public async login(email: string, password: string): Promise<LoginResponse> {

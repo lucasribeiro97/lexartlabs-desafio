@@ -6,8 +6,7 @@ export default class UserModel implements IUserModel<IUser> {
   private model = SequelizeUser;
 
   async createUser(user: IUser): Promise<IUser> {
-    const { email, password, username, role } = user;
-    const newUser = await this.model.create({ email, password, username, role });
+    const newUser = await this.model.create(user);
     return newUser;
   }
 
