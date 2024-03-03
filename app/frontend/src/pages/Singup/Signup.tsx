@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import validateSignup from '../utils/validateSignup';
+import validateSignup from '../../utils/validateSignup';
+import './Signup.css';
 
-function Singup() {
+function Signup() {
   const url = 'http://localhost:3003/sign-up';
   const navigate = useNavigate();
 
@@ -35,11 +36,11 @@ function Singup() {
 
     localStorage.setItem('token', token);
 
-    navigate('/login');
+    navigate('/products');
   }
 
   return (
-    <div>
+    <div className='container-signup'>
       <h2>Cadastro</h2>
       <form onSubmit={ handleSubmit }>
         <input
@@ -69,4 +70,4 @@ function Singup() {
   );
 }
 
-export default Singup;
+export default Signup;

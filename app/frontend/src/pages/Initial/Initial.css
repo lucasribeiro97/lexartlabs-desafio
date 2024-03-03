@@ -1,0 +1,37 @@
+.container-initial {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.container-initial > h1 {
+  font-size: 48px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.container-initial .button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.container-initial .button:hover {
+  background-color: #e64c3c;
+}
+
+.container-initial .button + .button {
+  margin-left: 20px;
+}
+
+.container-initial .button .text {
+  text-decoration: none;
+  color: #fff;
+}
