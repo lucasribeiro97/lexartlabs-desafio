@@ -30,7 +30,7 @@ services:
       timeout: 10s
       retries: 5
   db:
-    image: postgres:13
+    image: postgres:15
     container_name: db
     ports:
       - 5432:5432
