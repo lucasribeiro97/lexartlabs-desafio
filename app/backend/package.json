@@ -5,7 +5,11 @@
   "main": "src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "db:reset": "npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "build": "tsc --project tsconfig.json",
+    "prestart": "npm run build && npm run db:reset",
     "start": "node ./build/server.js",
+    "predev": "npm run db:reset",
     "dev": "tsnd --watch \"./src/**\" --transpile-only ./src/server.ts"
   },
   "keywords": [],
@@ -23,6 +27,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
+    "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
