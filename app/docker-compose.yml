@@ -4,7 +4,7 @@ services:
     container_name: app_frontend
     build: ./frontend
     ports:
-      - "3002:3002"
+      - 3002:3002
     working_dir: /app-frontend
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3002"]
@@ -14,7 +14,7 @@ services:
     container_name: app_backend
     build: ./backend
     ports:
-      - "3003:3003"
+      - 3003:3003
     working_dir: /app-backend
     command: dev
     volumes:
