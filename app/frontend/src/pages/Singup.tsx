@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import validateLogin from '../utils/validateLogin';
 import validateSignup from '../utils/validateSignup';
 
 function Singup() {
