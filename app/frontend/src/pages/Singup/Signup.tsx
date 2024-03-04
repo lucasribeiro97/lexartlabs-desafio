@@ -4,6 +4,7 @@ import validateSignup from '../../utils/validateSignup';
 import './Signup.css';
 
 function Signup() {
+  // comentario
   const url = 'https://lexartlabs-desafio-server.vercel.app/sign-up';
   const navigate = useNavigate();
 
