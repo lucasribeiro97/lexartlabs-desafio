@@ -5,7 +5,7 @@ import './Signup.css';
 
 function Signup() {
   // comentario
-  const url = 'https://lexartlabs-desafio-server.vercel.app/sign-up';
+  const url = 'https://localhost:3000/sign-up';
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
