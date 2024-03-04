@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require('jsonwebtoken');
-const mapStatusHTTP_1 = require("../utils/mapStatusHTTP");
-const UserService_1 = require("../services/UserService");
+const mapStatusHTTP_1 = __importDefault(require("../utils/mapStatusHTTP"));
+const UserService_1 = __importDefault(require("../services/UserService"));
 class UserController {
     constructor(userService = new UserService_1.default()) {
         this.userService = userService;
