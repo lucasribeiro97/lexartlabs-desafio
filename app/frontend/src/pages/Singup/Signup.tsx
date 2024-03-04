@@ -4,8 +4,7 @@ import validateSignup from '../../utils/validateSignup';
 import './Signup.css';
 
 function Signup() {
-  // comentario
-  const url = 'https://localhost:3000/sign-up';
+  const url = 'https://localhost:3003/sign-up';
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
