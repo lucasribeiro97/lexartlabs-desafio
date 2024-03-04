@@ -9,9 +9,9 @@ const config = {
     port: 5432,
     dialect: 'postgres',
     dialectOptions: {
-        ssl: process.env.POSTGRES_SSL === 'true' ? {
+        ssl: {
             require: true,
-        } : undefined
+        }
     }
 };
 module.exports = config;
