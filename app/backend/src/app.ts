@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(corsOptions));
 
-app.use('/login', loginRouter);
+app.use('/login', cors(corsOptions), loginRouter);
 app.use('/sign-up', cors(corsOptions), signupRouter);
 
 app.get('/', (req: Request, res: Response) => {
