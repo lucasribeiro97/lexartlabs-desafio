@@ -4,7 +4,7 @@ import validateSignup from '../../utils/validateSignup';
 import './Signup.css';
 
 function Signup() {
-  const url = 'http://localhost:3003/sign-up';
+  const url = 'https://lexartlabs-desafio-server.vercel.app/sign-up';
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');

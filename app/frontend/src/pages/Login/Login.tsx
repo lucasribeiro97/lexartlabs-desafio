@@ -4,7 +4,7 @@ import validateLogin from "../../utils/validateLogin";
 import './Login.css';
 
 function Login() {
-  const url = 'http://localhost:3003/login';
+  const url = 'https://lexartlabs-desafio-server.vercel.app/login';
 
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
