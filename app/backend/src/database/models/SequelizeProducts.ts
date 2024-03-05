@@ -7,8 +7,8 @@ import {
 } from "sequelize";
 import db from '.';
 
-class SequelizeProducts extends Model <InferAttributes<SequelizeProducts>,
-InferCreationAttributes<SequelizeProducts>> {
+class SequelizeProduct extends Model <InferAttributes<SequelizeProduct>,
+InferCreationAttributes<SequelizeProduct>> {
   declare id: CreationOptional<number>;
 
   declare name: string;
@@ -16,13 +16,9 @@ InferCreationAttributes<SequelizeProducts>> {
   declare brand: string;
 
   declare model: string;
-
-  declare price: number;
-
-  declare color: string;
 }
 
-SequelizeProducts.init({
+SequelizeProduct.init({
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -41,14 +37,6 @@ SequelizeProducts.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  price: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  color: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  }
 }, {
   sequelize: db,
   modelName: 'products',
@@ -56,4 +44,4 @@ SequelizeProducts.init({
   underscored: true,
 });
 
-export default SequelizeProducts;
+export default SequelizeProduct;

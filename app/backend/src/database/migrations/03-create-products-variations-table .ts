@@ -1,30 +1,31 @@
 import { DataTypes, Model, QueryInterface } from "sequelize";
-import { IProduct } from "../../interfaces/products/IProduct";
+import { IProductVariation } from "../../interfaces/productVariation/IProductVariation";
 
 export default {
   up(queryInterface: QueryInterface) {
-    return queryInterface.createTable<Model<IProduct>>("products", {
+    return queryInterface.createTable<Model<IProductVariation>>("productsVariations", {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      name: {
-        type: DataTypes.STRING,
+      productId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'product_id'
+      },
+      price: {
+        type: DataTypes.INTEGER,
         allowNull: false
       },
-      brand: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      model: {
+      color: {
         type: DataTypes.STRING,
         allowNull: false
       },
   });
 },
   down(queryInterface: QueryInterface) {
-    return queryInterface.dropTable("products");
+    return queryInterface.dropTable("productsVariations");
   }
 }

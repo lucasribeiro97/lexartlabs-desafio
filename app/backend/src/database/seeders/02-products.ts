@@ -7,15 +7,11 @@ export default {
         name: "Xiaomi Redmi 9",
         brand: "Xiaomi",
         model: "Redmi 9",
-        price: 1000,
-        color: "red"
       },
       {
         name: "Iphone 14 Pro",
         brand: "Apple",
         model: "14 Pro",
-        price: 2000,
-        color: "silver"
       }
     ], {});
   },
