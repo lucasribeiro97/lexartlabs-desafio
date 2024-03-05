@@ -37,4 +37,9 @@ export default class ProductService {
     const newProduct = await this.productModel.createProduct(product);
     return newProduct;
   }
+
+  public async getAllProducts() {
+    const products = await this.productModel.getAllProducts();
+    return products;
+  }
 }

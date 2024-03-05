@@ -9,4 +9,9 @@ export default class ProductModel implements IProductModel<IProduct> {
     const newProduct = await this.model.create(product)
     return newProduct
   }
+
+  async getAllProducts(): Promise<IProduct[]> {
+    const products = await this.model.findAll()
+    return products
+  }
 }
