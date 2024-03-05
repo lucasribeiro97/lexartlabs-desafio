@@ -24,4 +24,14 @@ export default class ProductModel implements IProductModel<IProduct> {
 
     return findProduct
   }
+
+  async deleteProduct(id: number): Promise<IProduct | null> {
+    const findProduct = await this.model.findByPk(id)
+
+    if (findProduct) {
+      await this.model.destroy({ where: { id } }) 
+    }
+    
+    return findProduct
+  }
 }

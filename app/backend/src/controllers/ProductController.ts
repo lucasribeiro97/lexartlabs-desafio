@@ -33,4 +33,10 @@ export default class ProductController {
     const { status, data} = await this.productService.updateProduct(Number(id), price);
     return res.status(200).json(data);
   }
+
+  public async deleteProduct(req: Request, res: Response) {
+    const { id } = req.params;
+    const { status, data } = await this.productService.deleteProduct(Number(id));
+    return res.status(200).json(data);
+  }
 }

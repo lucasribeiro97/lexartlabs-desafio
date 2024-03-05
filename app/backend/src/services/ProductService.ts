@@ -52,4 +52,14 @@ export default class ProductService {
 
     return { status: 'SUCCESSFUL', data: { message: 'Product updated' } }
   }
+
+  public async deleteProduct(id: number): Promise<ServiceResponse<ServiceMessage>> {
+    const deletedProduct = await this.productModel.deleteProduct(id);
+
+    if (!deletedProduct) {
+      return { status: 'INVALID_DATA', data: { message: 'Product not found' } }
+    }
+
+    return { status: 'SUCCESSFUL', data: { message: 'Product deleted' } }
+  }
 }
