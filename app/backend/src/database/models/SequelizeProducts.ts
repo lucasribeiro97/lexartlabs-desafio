@@ -16,6 +16,10 @@ InferCreationAttributes<SequelizeProduct>> {
   declare brand: string;
 
   declare model: string;
+
+  declare price: number;
+
+  declare color: string;
 }
 
 SequelizeProduct.init({
@@ -34,6 +38,14 @@ SequelizeProduct.init({
     allowNull: false,
   },
   model: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  price: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  color: {
     type: DataTypes.STRING,
     allowNull: false,
   },
