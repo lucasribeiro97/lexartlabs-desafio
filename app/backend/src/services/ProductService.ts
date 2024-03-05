@@ -1,4 +1,4 @@
-import { NewEntity } from "../interfaces";
+import { ServiceMessage, ServiceResponse } from "../interfaces/ServiceResponse";
 import { IProduct, IProduct2, IProduct3 } from "../interfaces/products/IProduct";
 import { IProductModel } from "../interfaces/products/IProductModel";
 import ProductModel from "../models/ProductModel";
@@ -41,5 +41,15 @@ export default class ProductService {
   public async getAllProducts() {
     const products = await this.productModel.getAllProducts();
     return products;
+  }
+
+  public async updateProduct(id: number, price: number): Promise<ServiceResponse<ServiceMessage>> {
+    const updatedProduct = await this.productModel.updateProduct(id, price);
+
+    if (!updatedProduct) {
+      return { status: 'INVALID_DATA', data: { message: 'Product not found' } }
+    }
+
+    return { status: 'SUCCESSFUL', data: { message: 'Product updated' } }
   }
 }

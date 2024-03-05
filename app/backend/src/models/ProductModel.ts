@@ -14,4 +14,14 @@ export default class ProductModel implements IProductModel<IProduct> {
     const products = await this.model.findAll()
     return products
   }
+
+  async updateProduct(id: number, price: number): Promise<IProduct | null> {
+    const findProduct = await this.model.findByPk(id)
+
+    if (findProduct) {
+      await findProduct.update({ price }, { where: { id } })
+    }
+
+    return findProduct
+  }
 }
