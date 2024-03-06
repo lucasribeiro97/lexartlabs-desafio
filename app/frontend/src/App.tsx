@@ -9,11 +9,11 @@ import CreateProduct from './pages/CreateProduct/CreateProduct';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={ <Initial /> } />
-      <Route path="/login" element={ <Login /> } />
-      <Route path="/sign-up" element={ <Signup /> } />
-      <Route path="/products" element={ <Products /> } />
-        <Route path='/create' element={ <CreateProduct/> }/>
+      <Route path="/" element={<Initial />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/sign-up" element={<Signup />} />
+      <Route path="/products" element={<Products />} />
+      <Route path='/create' element={<CreateProduct />} />
     </Routes>
   );
 }

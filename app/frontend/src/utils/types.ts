@@ -5,6 +5,7 @@ export type Login  = {
 }
 
 export type Product = {
+  id?: number | string;
   name: string;
   brand: string;
   model: string;
