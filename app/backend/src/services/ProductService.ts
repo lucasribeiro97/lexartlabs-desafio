@@ -43,8 +43,8 @@ export default class ProductService {
     return products;
   }
 
-  public async updateProduct(id: number, price: number): Promise<ServiceResponse<ServiceMessage>> {
-    const updatedProduct = await this.productModel.updateProduct(id, price);
+  public async updateProduct(id: number, product: IProduct): Promise<ServiceResponse<ServiceMessage>> {
+    const updatedProduct = await this.productModel.updateProduct(id, product);
 
     if (!updatedProduct) {
       return { status: 'INVALID_DATA', data: { message: 'Product not found' } }

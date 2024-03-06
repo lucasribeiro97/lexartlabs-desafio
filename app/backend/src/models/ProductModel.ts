@@ -15,11 +15,11 @@ export default class ProductModel implements IProductModel<IProduct> {
     return products
   }
 
-  async updateProduct(id: number, price: number): Promise<IProduct | null> {
+  async updateProduct(id: number, product: IProduct): Promise<IProduct | null> {
     const findProduct = await this.model.findByPk(id)
 
     if (findProduct) {
-      await findProduct.update({ price }, { where: { id } })
+      await findProduct.update(product, { where: { id } })
     }
 
     return findProduct
