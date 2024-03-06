@@ -32,33 +32,38 @@ function Login() {
 
     const { token } = await response.json();
 
+    if (!token) {
+      alert('Invalid email or password');
+      return;
+    }
+
     localStorage.setItem('token', token);
     navigate('/products');
   }
   return (
     <div className="container-login">
       <h2>Login</h2>
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="email"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder='E-mail'
         />
         <input
           type="password"
           name="password"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder='Senha'
         />
         <button>Entrar</button>
-    </form>
-    <div>
-      <p>Não tem uma conta? <Link to="/sign-up">Clique Aqui</Link></p>
+      </form>
+      <div>
+        <p>Não tem uma conta? <Link to="/sign-up">Clique Aqui</Link></p>
+      </div>
     </div>
-  </div>
   )
 }
 

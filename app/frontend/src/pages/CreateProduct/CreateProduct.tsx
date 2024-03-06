@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Product } from "../../utils/types";
 import './CreateProduct.css';
+import validateCreateProduct from "../../utils/validateCreateProduct";
 
 const initial_state = {
   name: '',
@@ -21,12 +22,15 @@ function CreateProduct({ selectedProduct }: any) {
     setProduct({ ...product, [name]: value });
   }
 
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const token = localStorage.getItem('token');
     if (!token) return;
 
+    const isValid = validateCreateProduct(product);
+    if (!isValid) return isValid;
 
     if (selectedProduct?.id) {
       await fetch(`${url}/${selectedProduct.id}`, {
@@ -77,7 +81,7 @@ function CreateProduct({ selectedProduct }: any) {
           className="form-input"
         />
         <input
-          type="text"
+          type="number"
           name="price"
           placeholder="Preço"
           value={price}
