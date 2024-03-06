@@ -40,4 +40,10 @@ export default class ProductController {
     const { status, data } = await this.productService.deleteProduct(Number(id));
     return res.status(mapStatusHTTP(status)).json(data);
   }
+
+  public async filterProducts(req: Request, res: Response) {
+    const { search } = req.query;
+    const products = await this.productService.filterProducts(search as string);
+    return res.status(mapStatusHTTP(products.status)).json(products.data);
+  }
 }

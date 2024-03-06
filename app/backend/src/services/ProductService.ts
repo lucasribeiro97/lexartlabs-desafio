@@ -62,4 +62,14 @@ export default class ProductService {
 
     return { status: 'SUCCESSFUL', data: { message: 'Product deleted' } }
   }
+
+  public async filterProducts(search: string) {
+    const filteredProducts = await this.productModel.filterProducts(search);
+
+    if (filteredProducts === null) {
+      return { status: 'INVALID_DATA', data: { message: 'Product not found' } }
+    }
+
+    return { status: 'SUCCESSFUL', data: filteredProducts };
+  }
 }

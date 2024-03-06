@@ -3,4 +3,5 @@ export interface IProductModel <IProduct> {
   getAllProducts(): Promise<IProduct[]>,
   updateProduct(id:number, product: IProduct): Promise<IProduct | null>,
   deleteProduct(id:number): Promise<IProduct | null>,
+  filterProducts(name: string): Promise<IProduct[] | null>
 }

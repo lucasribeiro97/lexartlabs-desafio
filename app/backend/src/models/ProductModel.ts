@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import SequelizeProduct from "../database/models/SequelizeProducts";
 import { IProduct } from "../interfaces/products/IProduct";
 import { IProductModel } from "../interfaces/products/IProductModel";
@@ -33,5 +34,20 @@ export default class ProductModel implements IProductModel<IProduct> {
     }
     
     return findProduct
+  }
+
+  async filterProducts(search: string): Promise<IProduct[]> {
+    const filteredProducts = await this.model.findAll({
+      where: {
+        [Op.or]: [
+          { name: { [Op.iLike]: `%${search}%` } },
+          { brand: { [Op.iLike]: `%${search}%` } },
+          { model: { [Op.iLike]: `%${search}%` } },
+          { color: { [Op.iLike]: `%${search}%` } }
+        ]
+      }
+    })
+
+    return filteredProducts
   }
 }

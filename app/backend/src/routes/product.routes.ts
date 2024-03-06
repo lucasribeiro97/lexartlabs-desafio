@@ -10,5 +10,6 @@ router.post('/', Validation.authenticate, (req, res) => productController.create
 router.get('/', Validation.authenticate, (req, res) => productController.getAllProducts(req, res));
 router.put('/:id', Validation.authenticate, (req, res) => productController.updateProduct(req, res));
 router.delete('/:id', Validation.authenticate, (req, res) => productController.deleteProduct(req, res));
+router.get('/filter', Validation.authenticate, (req, res) => productController.filterProducts(req, res));
 
 export default router;
