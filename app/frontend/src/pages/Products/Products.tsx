@@ -10,10 +10,24 @@ function Products() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [openForm, setOpenForm] = useState(false);
+  const [searchProducts, setSearchProducts] = useState('');
   const [id, setId] = useState<any>('');
 
   const token = localStorage.getItem('token');
   if (!token) navigate('/login');
+
+  const handleFilter = async () => {
+    if (searchProducts.length > 0) {
+      const response = await fetch(`${url}/filter?search=${searchProducts}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      setProducts(data);
+    }
+  }
 
   const fetchProducts = async () => {
     const response = await fetch(url, {
@@ -44,6 +58,15 @@ function Products() {
   return (
     <div className="products-container">
       <h1>Produtos</h1>
+      <div>
+        <input
+          type="text"
+          name="procurar"
+          placeholder="Pesquisar"
+          onChange={(e) => setSearchProducts(e.target.value)}
+        />
+        <button onClick={() => handleFilter()}>Pesquisar</button>
+      </div>
       <Link to="/create" className="add-product-link">Cadastre um produto</Link>
       <div className="product-grid">
         {products.map((product) => (
