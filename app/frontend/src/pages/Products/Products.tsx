@@ -29,6 +29,16 @@ function Products() {
     fetchProducts();
   }, [openForm]);
 
+  const removeProduct = async (id: any) => {
+    await fetch(`${url}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    fetchProducts();
+  };
+
   return (
     <div className="products-container">
       <h1>Produtos</h1>
@@ -56,7 +66,7 @@ function Products() {
               >
                 {openForm && product.id === id ? 'Cancelar' : 'Editar'}
               </button>
-              <button>Excluir</button>
+              <button onClick={() => removeProduct(product.id)}>Excluir</button>
             </div>
           </div>
         ))}
