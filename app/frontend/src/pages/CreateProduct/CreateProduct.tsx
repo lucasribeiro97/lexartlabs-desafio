@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Product } from "../../utils/types";
 import './CreateProduct.css';
 import validateCreateProduct from "../../utils/validateCreateProduct";
+import { useNavigate } from "react-router-dom";
 
 const initial_state = {
   name: '',
@@ -13,6 +14,7 @@ const initial_state = {
 
 function CreateProduct({ selectedProduct }: any) {
   const url = 'http://localhost:3003/products';
+  const navigate = useNavigate();
   const [product, setProduct] = useState<Product>(selectedProduct || initial_state);
 
   const { name, brand, model, price, color } = product;
@@ -51,6 +53,7 @@ function CreateProduct({ selectedProduct }: any) {
         body: JSON.stringify(product)
       });
     }
+    navigate('/products');
   }
 
   return (

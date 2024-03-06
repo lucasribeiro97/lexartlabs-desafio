@@ -30,13 +30,15 @@ function Products() {
   }, [openForm]);
 
   const removeProduct = async (id: any) => {
-    await fetch(`${url}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    fetchProducts();
+    if (window.confirm('Tem certeza que deseja excluir este produto?')) {
+      await fetch(`${url}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      fetchProducts();
+    }
   };
 
   return (
