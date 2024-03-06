@@ -40,7 +40,7 @@ export default class ProductService {
 
   public async getAllProducts() {
     const products = await this.productModel.getAllProducts();
-    return products;
+    return { status: 'SUCESSFUL', data: products };
   }
 
   public async updateProduct(id: number, product: IProduct): Promise<ServiceResponse<ServiceMessage>> {

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IProduct, IProduct2, IProduct3 } from "../interfaces/products/IProduct";
 import ProductService from "../services/ProductService";
+import mapStatusHTTP from "../utils/mapStatusHTTP";
 
 export default class ProductController {
   constructor(
@@ -24,19 +25,19 @@ export default class ProductController {
 
   public async getAllProducts(req: Request, res: Response) {
     const products = await this.productService.getAllProducts();
-    return res.status(200).json(products);
+    return res.status(mapStatusHTTP(products.status)).json(products.data);
   }
 
   public async updateProduct(req: Request, res: Response) {
     const { id } = req.params;
     const product = req.body;
     const { status, data} = await this.productService.updateProduct(Number(id), product);
-    return res.status(200).json(data);
+    return res.status(mapStatusHTTP(status)).json(data);
   }
 
   public async deleteProduct(req: Request, res: Response) {
     const { id } = req.params;
     const { status, data } = await this.productService.deleteProduct(Number(id));
-    return res.status(200).json(data);
+    return res.status(mapStatusHTTP(status)).json(data);
   }
 }
