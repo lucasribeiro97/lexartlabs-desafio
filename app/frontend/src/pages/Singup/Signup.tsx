@@ -4,7 +4,7 @@ import validateSignup from '../../utils/validateSignup';
 import './Signup.css';
 
 function Signup() {
-  const url = 'http://localhost:3003/sign-up';
+  const url = 'https://lexartlabs-desafio-server.vercel.app/sign-up';
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -42,26 +42,26 @@ function Signup() {
   return (
     <div className='container-signup'>
       <h2>Cadastro</h2>
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"
-          value={ username }
-          onChange={ (e) => setUsername(e.target.value) }
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           placeholder='Usuário'
         />
         <input
           type="text"
           name="email"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder='E-mail'
         />
         <input
           type="password"
           name="password"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder='Senha'
         />
         <button>Cadastrar</button>

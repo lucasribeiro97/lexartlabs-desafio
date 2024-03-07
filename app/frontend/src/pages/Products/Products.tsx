@@ -5,7 +5,7 @@ import './Products.css';
 import CreateProduct from "../CreateProduct/CreateProduct";
 
 function Products() {
-  const url = 'http://localhost:3003/products';
+  const url = 'https://lexartlabs-desafio-server.vercel.app/products';
 
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);

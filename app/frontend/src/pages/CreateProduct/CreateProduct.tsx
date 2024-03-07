@@ -13,7 +13,7 @@ const initial_state = {
 }
 
 function CreateProduct({ selectedProduct, setOpenForm }: Props) {
-  const url = 'http://localhost:3003/products';
+  const url = 'https://lexartlabs-desafio-server.vercel.app/products';
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product>(selectedProduct || initial_state);
 
