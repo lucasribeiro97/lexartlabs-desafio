@@ -8,6 +8,7 @@ const config = {
     ssl: process.env.POSTGRES_SSL === 'true',
     port: 5432,
     dialect: 'postgres',
+    dialectModule: require('pg'),
     dialectOptions: {
         ssl: {
             require: true,
