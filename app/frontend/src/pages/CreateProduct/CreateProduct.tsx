@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Product } from "../../utils/types";
+import { Product, Props } from "../../utils/types";
 import './CreateProduct.css';
 import validateCreateProduct from "../../utils/validateCreateProduct";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const initial_state = {
   color: ''
 }
 
-function CreateProduct({ selectedProduct }: any) {
+function CreateProduct({ selectedProduct, setOpenForm }: Props) {
   const url = 'http://localhost:3003/products';
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product>(selectedProduct || initial_state);
@@ -35,6 +35,7 @@ function CreateProduct({ selectedProduct }: any) {
     if (!isValid) return isValid;
 
     if (selectedProduct?.id) {
+      console.log('entrou')
       await fetch(`${url}/${selectedProduct.id}`, {
         method: 'PUT',
         headers: {
@@ -43,6 +44,7 @@ function CreateProduct({ selectedProduct }: any) {
         },
         body: JSON.stringify(product)
       });
+      setOpenForm(false);
     } else {
       await fetch(url, {
         method: 'POST',

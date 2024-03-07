@@ -9,6 +9,35 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.products-container > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.products-container > div input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.products-container > div button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ec6c60;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.products-container > div button:hover {
+  background-color: #e64c3c;
+}
+
 .products-container > h1 {
   align-self: center;
   font-size: 36px;

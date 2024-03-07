@@ -11,7 +11,7 @@ function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [openForm, setOpenForm] = useState(false);
   const [searchProducts, setSearchProducts] = useState('');
-  const [id, setId] = useState<any>('');
+  const [id, setId] = useState<number | undefined>(0);
 
   const token = localStorage.getItem('token');
   if (!token) navigate('/login');
@@ -43,7 +43,7 @@ function Products() {
     fetchProducts();
   }, [openForm]);
 
-  const removeProduct = async (id: any) => {
+  const removeProduct = async (id: number | undefined) => {
     if (window.confirm('Tem certeza que deseja excluir este produto?')) {
       await fetch(`${url}/${id}`, {
         method: 'DELETE',
@@ -72,7 +72,7 @@ function Products() {
         {products.map((product) => (
           <div key={product.id} className="product-card">
             {openForm && product.id === id ?
-              <CreateProduct selectedProduct={product} />
+              <CreateProduct selectedProduct={product} setOpenForm={setOpenForm} />
               :
               <>
                 <h2>{product.name}</h2>

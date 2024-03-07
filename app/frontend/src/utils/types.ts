@@ -5,10 +5,15 @@ export type Login  = {
 }
 
 export type Product = {
-  id?: number | string;
+  id?: number | undefined;
   name: string;
   brand: string;
   model: string;
   price: number;
   color: string;
+}
+
+export interface Props {
+  selectedProduct: Product | null;
+  setOpenForm: (isOpen: boolean) => void;
 }
