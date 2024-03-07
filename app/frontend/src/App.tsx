@@ -13,7 +13,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/sign-up" element={<Signup />} />
       <Route path="/products" element={<Products />} />
-      <Route path='/create' element={<CreateProduct />} />
+      <Route path='/create' element={<CreateProduct selectedProduct={null} setOpenForm={() => { }} />} />
     </Routes>
   );
 }
