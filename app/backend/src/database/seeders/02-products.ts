@@ -16,6 +16,13 @@ export default {
         model: "14 Pro",
         price: 1000,
         color: "White"
+      },
+      {
+        name: "Samsung Galaxy S21",
+        brand: "Samsung",
+        model: "Galaxy S21",
+        price: 500,
+        color: "White"
       }
     ], {});
   },
